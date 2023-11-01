@@ -1,2 +1,3 @@
 #!/usr/bin/python3
-print("".join(["{}".format(chr(alphabet)) for alphabet in range(97, 123)]))
+for alphabet in range(97, 123):
+    print("{}".format(chr(alphabet)), end="")
