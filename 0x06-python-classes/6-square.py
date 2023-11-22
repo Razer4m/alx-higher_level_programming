@@ -1,12 +1,11 @@
 #!/usr/bin/python3
 """Define a class Square."""
 
-
 class Square:
     """Represent a square."""
 
     def __init__(self, size=0, position=(0, 0)):
-        """Initialize a new instance of the Square class with optional size and position."""
+        """Init a new instnce of the Square clas and position."""
         self.size = size
         self.position = position
 
