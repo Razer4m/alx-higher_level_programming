@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """Defines a base class for all models."""
 import json
+import turtle
+import csv
 
 
 class Base:
@@ -64,7 +66,7 @@ class Base:
             dummy = cls(1)
         dummy.update(**dictionary)
         return dummy
-    
+
     @classmethod
     def save_to_file(cls, list_objs):
         """Write the JSON serialization of a list of objects to a file.
@@ -94,6 +96,36 @@ class Base:
         except FileNotFoundError:
             return []
         else:
-            dictionaries = cls.from_json_string(json_data)
-            instances = [cls.create(**dictionary) for dictionary in dictionaries]
+            d = cls.from_json_string(json_data)
+            instances = [cls.create(**dictionary) for dictionary in d]
             return instances
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Draw rectangles and squares using Turtle graphics.
+
+        Args:
+            list_rectangles (list): A list of Rectangle instances.
+            list_squares (list): A list of Square instances.
+        """
+        turtle.speed(0)
+        for rect in list_rectangles:
+            turtle.penup()
+            turtle.goto(rect.x, rect.y)
+            turtle.pendown()
+            turtle.forward(rect.width)
+            turtle.left(90)
+            turtle.forward(rect.height)
+            turtle.left(90)
+            turtle.forward(rect.width)
+            turtle.left(90)
+            turtle.forward(rect.height)
+            turtle.left(90)
+        for square in list_squares:
+            turtle.penup()
+            turtle.goto(square.x, square.y)
+            turtle.pendown()
+            for _ in range(4):
+                turtle.forward(square.size)
+                turtle.left(90)
+        turtle.mainloop()
