@@ -101,6 +101,16 @@ class Rectangle(Base):
                                                        self.width,
                                                        self.height)
 
+    def to_dictionary(self):
+        """ method that returs a dictionary with properties """
+        list_atr = ['id', 'width', 'height', 'x', 'y']
+        dict_rest = {}
+
+        for key in list_atr:
+            dict_rest[key] = getattr(self, key)
+
+        return dict_rest
+
     def update(self, *args, **kwargs):
         """
         Assigns arguments to attributes in the specified order.
