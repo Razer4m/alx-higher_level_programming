@@ -8,16 +8,9 @@ fetches https://intranet.hbtn.io/status.
 
 
 def fetch_x_request_id(url):
-    try:
-        with urllib.request.urlopen(url) as response:
-            headers = response.getheaders()
-            for header in headers:
-                if header[0].lower() == 'x-request-id':
-                    print(header[1])
-                    return
-            print("X-Request-Id header not found")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    request = urllib.request.Request(url)
+    with urllib.request.urlopen(request) as resp:
+        print(dict(resp.headers).get("X-Request-Id"))
 
 
 if __name__ == "__main__":
