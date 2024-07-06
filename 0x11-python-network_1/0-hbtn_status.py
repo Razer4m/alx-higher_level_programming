@@ -1,25 +1,33 @@
 #!/usr/bin/python3
-import urllib.request
-import sys
-
-"""A script that
-fetches https://intranet.hbtn.io/status.
+"""
+A script that fetches https://alx-intranet.hbtn.io/status.
 """
 
+import urllib.request
 
-def fetch_x_request_id(url):
+
+def fetch_status(url):
+    """
+    Fetches the content of the specified URL and prints the response body
+    with tabulation before the hyphen.
+
+    Args:
+        url (str): The URL to fetch.
+
+    Returns:
+        None
+    """
     try:
         with urllib.request.urlopen(url) as response:
-            headers = response.getheaders()
-            for header in headers:
-                if header[0].lower() == 'x-request-id':
-                    print(header[1])
-                    return
-            print("X-Request-Id header not found")
+            body = response.read()
+            print("Body response:")
+            print(f"\t- type: {type(body)}")
+            print(f"\t- content: {body}")
+            print(f"\t- utf8 content: {body.decode('utf-8')}")
     except Exception as e:
         print(f"An error occurred: {e}")
 
 
 if __name__ == "__main__":
-    url = sys.argv[1]
-    fetch_x_request_id(url)
+    url = "https://alx-intranet.hbtn.io/status"
+    fetch_status(url)
