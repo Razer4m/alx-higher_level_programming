@@ -1,10 +1,11 @@
 #!/usr/bin/python3
+"""
+A script that takes in a URL, sends a request to the URL, and displays
+the value of the X-Request-Id variable found in the header of the response.
+"""
+
 import urllib.request
 import sys
-
-"""A script that
-fetches https://intranet.hbtn.io/status.
-"""
 
 
 def fetch_x_request_id(url):
