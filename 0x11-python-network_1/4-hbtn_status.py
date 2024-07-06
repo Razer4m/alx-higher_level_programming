@@ -6,6 +6,7 @@ the body of the response in a specific format.
 
 import requests
 
+
 def fetch_status(url):
     response = requests.get(url)
     body = response.text
